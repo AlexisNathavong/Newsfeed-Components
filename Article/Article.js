@@ -113,21 +113,38 @@ const data = [
 
 */
 const articles = document.querySelector('.articles')
-data.forEach(data => {
+articleData.forEach(data => {
   console.log('creating article:', data.title);
   articles.appendChild(creatArticle(data.title, data.date));
 });
 
-function creatArticle(title, content) {
+function creatArticle(title, date) {
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
-  const date = document.createElement('p');
+  const articleDate = document.createElement('p');
+  const expandButton = document.createElement('span');
+  //Setup structure of elements
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(expandButton);
+  
+  //Set class names
+  article.classList.add('article');
+  articleTitle.classList.add('articleTitle');
+  articleDate.classList.add('articleDate');
+  expandButton.classList.add('expandButton');
+  
+  //Set text content
+  articleTitle.textContent = title;
+  expandButton.textContent = 'Expand';
+  
+  //Button events
+  expandButton.addEventListener('click', event => {
+    console.log('button clicked', event.target);
+  
+  });
+  return article;
 }
 
-//Setup structure of elements
-article.appendChild(articleTitle);
-article.appendChild(date);
 
-//Set class names
-article.classList.add('article');
-articleTitle.classList.add('article')
+
